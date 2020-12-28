@@ -9,7 +9,7 @@ Created on Mon Jul 13 23:54:30 2020
 
 
 
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 import pandas as pd
 import pickle
 import tensorflow as tf
@@ -27,21 +27,22 @@ for i in range(1,11):
     kmeans.fit(x)
     wcss.append(kmeans.inertia_)
 plt.plot(range(1,11),wcss)
+plt.xlabel("Number of Clusters")
+plt.ylabel("WCSS")
+plt.title("WCSS Graph for Humidity")
 plt.show()
 
 
-kmeans = KMeans(n_clusters = 5 , init = 'k-means++' )
+kmeans = KMeans(n_clusters = 3 , init = 'k-means++' )
 h = kmeans.fit_predict(x)
 
 kmeans.predict([[0]])
 
-
 plt.scatter(x[h ==0,0],x[h == 0,0] ,s = 50, c = 'red')
 plt.scatter(x[h ==1,0],x[h == 1,0] ,s = 50, c = 'blue')
 plt.scatter(x[h ==2,0],x[h == 2,0] , s = 50,c = 'green')
-plt.scatter(x[h ==3,0],x[h == 3,0] ,s = 50, c = 'cyan')
-plt.scatter(x[h ==4,0],x[h == 4,0] ,s = 50, c = 'pink')
 plt.scatter(kmeans.cluster_centers_[:, 0],kmeans.cluster_centers_[:, 0],s = 10, c = 'yellow')
+plt.title("Clustering of Humidity Data")
 plt.show()
 
 kmeans = pickle.load(open('Cluster-Model/H_model', 'rb'))
@@ -54,10 +55,13 @@ for i in range(1,11):
     kmeans.fit(x)
     wcss.append(kmeans.inertia_)
 plt.plot(range(1,11),wcss)
+plt.xlabel("Number of Clusters")
+plt.ylabel("WCSS")
+plt.title("WCSS Graph for Pressure")
 plt.show()
 
 
-kmeans = KMeans(n_clusters = 5 , init = 'k-means++' )
+kmeans = KMeans(n_clusters = 4 , init = 'k-means++' )
 p = kmeans.fit_predict(x)
 
 kmeans.predict([[0]])
@@ -66,9 +70,10 @@ kmeans.predict([[0]])
 plt.scatter(x[p ==0,0],x[p == 0,0] ,s = 50, c = 'red')
 plt.scatter(x[p ==1,0],x[p == 1,0] ,s = 50, c = 'blue')
 plt.scatter(x[p ==2,0],x[p == 2,0] , s = 50,c = 'green')
-plt.scatter(x[p ==3,0],x[p == 3,0] ,s = 50, c = 'cyan')
-plt.scatter(x[p ==4,0],x[p == 4,0] ,s = 50, c = 'pink')
+plt.scatter(x[h ==3,0],x[h == 3,0] ,s = 50, c = 'cyan')
+plt.scatter(x[h ==4,0],x[h == 4,0] ,s = 50, c = 'pink')
 plt.scatter(kmeans.cluster_centers_[:, 0],kmeans.cluster_centers_[:, 0],s = 10, c = 'yellow')
+plt.title("Clustering of Pressure Data")
 plt.show()
 
 
@@ -85,6 +90,9 @@ for i in range(1,11):
     kmeans.fit(x)
     wcss.append(kmeans.inertia_)
 plt.plot(range(1,11),wcss)
+plt.xlabel("Number of Clusters")
+plt.ylabel("WCSS")
+plt.title("WCSS Graph for Temperature")
 plt.show()
 
 
@@ -96,10 +104,8 @@ kmeans.predict([[0]])
 
 plt.scatter(x[t ==0,0],x[t == 0,0] ,s = 50, c = 'red')
 plt.scatter(x[t ==1,0],x[t == 1,0] ,s = 50, c = 'blue')
-plt.scatter(x[t ==2,0],x[t == 2,0] , s = 50,c = 'green')
-plt.scatter(x[t ==3,0],x[t == 3,0] ,s = 50, c = 'cyan')
-plt.scatter(x[t ==4,0],x[t == 4,0] ,s = 50, c = 'pink')
 plt.scatter(kmeans.cluster_centers_[:, 0],kmeans.cluster_centers_[:, 0],s = 10, c = 'yellow')
+plt.title("Clustering of Temperature Data")
 plt.show()
 
 
