@@ -1,8 +1,18 @@
 #include <EloquentTinyML.h>
 #include "TPH_Anomaly_Predictor.h"
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME280.h>
+
+#define BME_SCK 18
+#define BME_MISO 19
+#define BME_MOSI 23
+#define BME_CS 5*/
+Adafruit_BME280 bme;
+
 #define NUMBER_OF_INPUTS 3
 #define NUMBER_OF_OUTPUTS 1
 #define TENSOR_ARENA_SIZE 3*1024
+
 
 Eloquent::TinyML::TfLite<NUMBER_OF_INPUTS, NUMBER_OF_OUTPUTS, TENSOR_ARENA_SIZE> ml(TPH_Anomaly_Predictor_tflite);
 
@@ -12,17 +22,16 @@ void setup() {
 }
 
 void loop() {
-  // pick up a random x and predict its sine
-  float x = 100;
-  float y = 18.6;
-  float z = 6529;
+  float h = bme.readHumidity();
+  float p = bme.readPressure();
+  float t = bme.readTemperature();
   Serial.print("Humidity:");
-  Serial.println(x);
+  Serial.println(h);
   Serial.print("Pressure:");;
-  Serial.println(y);
+  Serial.println(p);
   Serial.print("Temperature:");
-  Serial.println(z);
-  float input[3] = { x, y, z };
+  Serial.println(t);
+  float input[3] = { h, p, t };
   float predicted = ml.predict(input);
 
   if (predicted <= 0.5)
@@ -32,7 +41,6 @@ void loop() {
   }
   else {
     Serial.println(" Anomaly Detected");
-    Serial.println("Call prediction function");
     Serial.println();
   }
   delay(1000);
