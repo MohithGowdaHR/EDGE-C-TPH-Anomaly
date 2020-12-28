@@ -1,13 +1,10 @@
 #include <EloquentTinyML.h>
-// sine_model.h contains the array you exported from the previous step with xxd or tinymlgen
-#include "TPH_Anamoly_Predictor.h"
-
+#include "TPH_Anomaly_Predictor.h"
 #define NUMBER_OF_INPUTS 3
 #define NUMBER_OF_OUTPUTS 1
-// in future projects you may need to tweek this value: it's a trial and error process
 #define TENSOR_ARENA_SIZE 3*1024
 
-Eloquent::TinyML::TfLite<NUMBER_OF_INPUTS, NUMBER_OF_OUTPUTS, TENSOR_ARENA_SIZE> ml(TPH_Anamoly_Predictor_tflite);
+Eloquent::TinyML::TfLite<NUMBER_OF_INPUTS, NUMBER_OF_OUTPUTS, TENSOR_ARENA_SIZE> ml(TPH_Anomaly_Predictor_tflite);
 
 
 void setup() {

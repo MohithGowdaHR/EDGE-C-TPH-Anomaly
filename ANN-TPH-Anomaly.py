@@ -6,14 +6,11 @@ Created on Tue Jul 14 11:22:29 2020
 @author: mohithgowdahr
 """
 
-import csv
+
 import pandas as pd
-from datetime import datetime
-from pytz import timezone
 import tensorflow as tf
 from tensorflow.keras import layers
-from keras import optimizers
-import numpy as np
+
 
 
 dataset = pd.read_csv("Final-Dataset/Dataset_H.csv")
@@ -43,8 +40,8 @@ converter.optimizations = [tf.lite.Optimize.DEFAULT]
 tflite_model = converter.convert()
 
 # Save the model to disk
-open("TF-Model/TPH_Anamoly_Predictor.tflite", "wb").write(tflite_model)
+open("TF-Model/TPH_Anomaly_Predictor.tflite", "wb").write(tflite_model)
 
 
-#  command xxd -i TF-Model/TPH_Anamoly_Predictor.tflite > H-Model/TPH_Anamoly_Predictor.h
+#  command xxd -i TF-Model/TPH_Anomaly_Predictor.tflite > H-Model/TPH_Anomaly_Predictor.h
 
