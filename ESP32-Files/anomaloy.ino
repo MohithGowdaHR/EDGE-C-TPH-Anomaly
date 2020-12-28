@@ -18,7 +18,7 @@ Eloquent::TinyML::TfLite<NUMBER_OF_INPUTS, NUMBER_OF_OUTPUTS, TENSOR_ARENA_SIZE>
 
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
 }
 
 void loop() {
