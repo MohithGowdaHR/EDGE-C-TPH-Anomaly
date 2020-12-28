@@ -3,7 +3,7 @@
 
 # Edge Computing
 
-# EDGE-C-TPH-Anamoly
+# EDGE-C-TPH-Anomaly
 
 ## Machine Learning at End Devices
 
